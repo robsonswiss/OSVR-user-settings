@@ -84,7 +84,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -514,10 +514,27 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
+  <tabstop>gender</tabstop>
+  <tabstop>standingHeight</tabstop>
+  <tabstop>seatedHeight</tabstop>
+  <tabstop>ipd</tabstop>
+  <tabstop>OSdominant</tabstop>
+  <tabstop>ODdominant</tabstop>
+  <tabstop>dOsSpherical</tabstop>
+  <tabstop>dOsCylindrical</tabstop>
+  <tabstop>dOsAxis</tabstop>
+  <tabstop>dOdSpherical</tabstop>
+  <tabstop>dOdCylindrical</tabstop>
+  <tabstop>dOdAxis</tabstop>
+  <tabstop>nOsAdd</tabstop>
+  <tabstop>nOdAdd</tabstop>
   <tabstop>aboutButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>saveButton</tabstop>
   <tabstop>exitButton</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>resetYawButton</tabstop>
+  <tabstop>demoButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>
