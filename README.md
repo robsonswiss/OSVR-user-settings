@@ -22,3 +22,9 @@ libwinpthread-1.dll
 List of improvements:
 - change external program invocations to use an XML config file to promote cross platform compatibility
 - integrate device parser application
+
+Things todo:
+- remove jsoncpp
+- continuous integration
+- make an xml config file to point to the executables for demo and reset_yaw.
+- integrate osvr_print.exe
