@@ -25,9 +25,9 @@
 #ifndef OSVRUSER_H
 #define OSVRUSER_H
 
-#include <QJsonObject>
 #include "json/json.h"
 
+using namespace std;
 
 enum eyeSide {OS,OD};
 
@@ -48,8 +48,8 @@ class OSVRUser
 public:
     OSVRUser();
 
-    QString gender() const;
-    void setGender(const QString &gender);
+    string gender() const;
+    void setGender(const string &gender);
 
     void setEye(eyeSide eyeBall,
                 bool dominant,
@@ -95,7 +95,7 @@ public:
     void writeEye(eyeData e,Json::Value &eyeJson) const;
 
 private:
-     QString mGender;
+     string mGender;
      eyeData mLeft;
      eyeData mRight;
      struct  anthro{

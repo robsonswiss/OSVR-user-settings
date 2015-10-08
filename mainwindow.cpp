@@ -134,7 +134,7 @@ bool MainWindow::loadConfigFile(QString filename)
 }
 
 void MainWindow::updateFormValues(){
-    if (!QString::compare("Male",osvrUser.gender()))
+    if ("Male" != osvrUser.gender())
         ui->gender->setCurrentIndex(0);
     else
         ui->gender->setCurrentIndex(1);
@@ -181,7 +181,7 @@ void MainWindow::loadValuesFromForm(OSVRUser *oo)
 {
     double ipd;
 
-    oo->setGender(ui->gender->currentText());
+    oo->setGender(ui->gender->currentText().toStdString());
 
     // IPD settings
     if (!ui->ipd->text().isEmpty()){

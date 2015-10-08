@@ -22,6 +22,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <string>
 #include "osvruser.h"
 
 OSVRUser::OSVRUser()
@@ -66,10 +67,10 @@ void OSVRUser::setEye(eyeSide eyeBall,
     eD->addNear = addNear;
 }
 
-QString OSVRUser::gender() const{
+string OSVRUser::gender() const{
     return mGender;
 }
-void OSVRUser::setGender(const QString &gender){
+void OSVRUser::setGender(const string &gender){
     mGender = gender;
 }
 
@@ -225,12 +226,12 @@ void OSVRUser::setAddNear(eyeSide eyeBall, double addNear)
 }
 
 void OSVRUser::readPersonal(const Json::Value qq){
-    QString gender = QString::fromStdString(qq["gender"].asString());
+    string gender = qq["gender"].asString();
 
-    if (!QString::compare(gender,"Male"))
-        mGender = QString("Male");
+    if (gender == "Male")
+        mGender = "Male";
     else
-        mGender = QString("Female");
+        mGender = "Female";
 
     Json::Value anthro=qq["anthropometric"];
     mAnthropometric.standingEyeHeight = anthro["standingEyeHeight"].asDouble();
@@ -285,7 +286,7 @@ void OSVRUser::writePersonal(Json::Value &personalSettingsJson) const
     eyesJson["left"] = os;
     writeEye(mRight,od);
     eyesJson["right"] = od;
-    personalSettingsJson["gender"] = mGender.toStdString();
+    personalSettingsJson["gender"] = mGender;
     personalSettingsJson["eyes"] = eyesJson;
 }
 
