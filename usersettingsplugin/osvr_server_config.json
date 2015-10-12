@@ -1,0 +1,14 @@
+/* The default config file, as used with the HDK, is fully auto-detected, so no configuration required. */
+/* See the JSON-Schema for server config or other samples to see possible options. */
+{
+    "plugins": [
+        "com_osvr_user_settings"
+    ],
+    "aliases": [
+        {
+            "/me/IPD": "/com_osvr_user_settings/UserSettings/analog/0",
+            "/me/StandingHeight": "/com_osvr_user_settings/UserSettings/analog/1",
+            "/me/SeatedHeight": "/com_osvr_user_settings/UserSettings/analog/2"
+        }
+    ]
+}

@@ -46,7 +46,7 @@ class AnalogSyncDevice {
     AnalogSyncDevice(OSVR_PluginRegContext ctx) : m_myVal(0) {
 
 		std::ifstream file_id;
-		file_id.open("osvr_user_settings.json");
+		file_id.open("C:/ProgramData/OSVR/osvr_user_settings.json");
 
 		Json::Reader reader;
 		Json::Value value;
@@ -102,10 +102,9 @@ class HardwareDetection {
     HardwareDetection() : m_found(false) {}
     OSVR_ReturnCode operator()(OSVR_PluginRegContext ctx) {
 
-        std::cout << "PLUGIN: Got a hardware detection request" << std::endl;
+        std::cout << "UserSettings: plugin instantiated" << std::endl;
         if (!m_found) {
-            std::cout << "PLUGIN: We have detected our fake device! Doing "
-                         "setup stuff!" << std::endl;
+            std::cout << "UserSettings: Reading settings file" << std::endl;
             m_found = true;
 
             /// Create our device object
