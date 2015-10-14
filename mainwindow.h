@@ -32,6 +32,10 @@ private slots:
     void on_demoButton_clicked();
     void on_resetYawButton_clicked();
 
+    void on_disableButton_clicked();
+
+    void on_enableButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

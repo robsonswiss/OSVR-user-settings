@@ -101,7 +101,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->tabWidget->setCurrentIndex(0);
 
-    osvrUserConfigFilename = QString("OSVR_user_config.json");
+    osvrUserConfigFilename = QString("C:/ProgramData/OSVR/osvr_user_settings.json");
     loadConfigFile(osvrUserConfigFilename);
 }
 
@@ -134,7 +134,7 @@ bool MainWindow::loadConfigFile(QString filename)
 }
 
 void MainWindow::updateFormValues(){
-    if ("Male" != osvrUser.gender())
+    if ("Male" == osvrUser.gender())
         ui->gender->setCurrentIndex(0);
     else
         ui->gender->setCurrentIndex(1);
@@ -261,5 +261,19 @@ void MainWindow::on_resetYawButton_clicked()
 {
     QProcess *process = new QProcess(this);
     QString file = "reset_yaw.bat";
+    process->start(file);
+}
+
+void MainWindow::on_disableButton_clicked()
+{
+    QProcess *process = new QProcess(this);
+    QString file = "disableOSVRDirect.bat";
+    process->start(file);
+}
+
+void MainWindow::on_enableButton_clicked()
+{
+    QProcess *process = new QProcess(this);
+    QString file = "enableOSVRDirect.bat";
     process->start(file);
 }

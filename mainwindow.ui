@@ -84,7 +84,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -428,9 +428,9 @@
      <widget class="QPushButton" name="resetYawButton">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>14</x>
         <y>40</y>
-        <width>75</width>
+        <width>111</width>
         <height>23</height>
        </rect>
       </property>
@@ -438,23 +438,23 @@
        <string>Reset Yaw</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="demoButton">
+     <widget class="QPushButton" name="enableButton">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>200</y>
-        <width>75</width>
-        <height>23</height>
+        <x>10</x>
+        <y>150</y>
+        <width>111</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>Launch demo</string>
+       <string>Enable Direct Mode</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_30">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>130</x>
         <y>40</y>
         <width>221</width>
         <height>131</height>
@@ -473,14 +473,46 @@
      <widget class="QLabel" name="label_31">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>200</y>
+        <x>130</x>
+        <y>150</y>
         <width>221</width>
         <height>51</height>
        </rect>
       </property>
       <property name="text">
-       <string>This will launch the HMD demo app to allow you to test the tracking and display functions of your headset.</string>
+       <string>Enable OSVR direct to display mode. This will allow the system to only display VR relevant apps on the HMD.</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="disableButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Disable Direct Mode</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_32">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>200</y>
+        <width>221</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Disables OSVR direct to display mode (see above).</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -534,7 +566,7 @@
   <tabstop>exitButton</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>resetYawButton</tabstop>
-  <tabstop>demoButton</tabstop>
+  <tabstop>enableButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>
