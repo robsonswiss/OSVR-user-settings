@@ -50,7 +50,7 @@ int main() {
 		context.getInterface("/me/SeatedHeight");
 
 	// Pretend that this is your application's mainloop.
-    for (int i = 0; i < 1000000; ++i) {
+    for (int i = 0; i < 100000000; ++i) {
         context.update();
 
 		if ((i % 1000) == 0){

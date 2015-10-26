@@ -36,28 +36,86 @@
 #include <iostream>
 #include <fstream>
 
+// set up for file watching
+#using <system.dll>
+#include <Windows.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <tchar.h>
+
 #include "../osvruser.h"
+
+struct Constants{
+	static const string config_file;
+	static const string config_path;
+};
+
+const string Constants::config_file = "osvr_user_settings.json";
+const string Constants::config_path = "C:/ProgramData/OSVR/";
+
+/// File watcher
+/// 
+using namespace System;
+using namespace System::IO;
+using namespace System::Security::Permissions;
+
 
 // Anonymous namespace to avoid symbol collision
 namespace {
+
+public ref class Watcher
+	{
+	private:
+		// Define the event handlers.
+		static void OnChanged(Object^ /*source*/, FileSystemEventArgs^ e)
+		{
+			// Specify what is done when a file is changed, created, or deleted.
+			std::cout << "USER_SETTINGS_PLUGIN: file change" << std::endl;
+			exit(1);
+		}
+
+		static void OnRenamed(Object^ /*source*/, RenamedEventArgs^ e)
+		{
+			// Specify what is done when a file is renamed.
+			std::cout << "USER_SETTINGS_PLUGIN: File renamed" << std::endl;
+		}
+
+	public:
+		[PermissionSet(SecurityAction::Demand, Name = "FullTrust")]
+		int static run()
+		{
+
+			// Create a new FileSystemWatcher and set its properties.
+			FileSystemWatcher^ watcher = gcnew FileSystemWatcher;
+			watcher->Path = gcnew String(Constants::config_path.c_str());
+
+			/* Watch for changes in LastAccess and LastWrite times, and
+			the renaming of files or directories. */
+			watcher->NotifyFilter = static_cast<NotifyFilters>(NotifyFilters::LastAccess |
+				NotifyFilters::LastWrite | NotifyFilters::FileName | NotifyFilters::DirectoryName);
+
+			// Only watch text files.
+			watcher->Filter = gcnew String(Constants::config_file.c_str());
+
+			// Add event handlers.
+			watcher->Changed += gcnew FileSystemEventHandler(Watcher::OnChanged);
+			watcher->Created += gcnew FileSystemEventHandler(Watcher::OnChanged);
+			watcher->Deleted += gcnew FileSystemEventHandler(Watcher::OnChanged);
+			watcher->Renamed += gcnew RenamedEventHandler(Watcher::OnRenamed);
+
+			// Begin watching.
+			watcher->EnableRaisingEvents = true;
+
+			// Wait for the user to quit the program.
+			return 0;
+		}
+	};
 
 class AnalogSyncDevice {
   public:
     AnalogSyncDevice(OSVR_PluginRegContext ctx) : m_myVal(0) {
 
-		std::ifstream file_id;
-		file_id.open("C:/ProgramData/OSVR/osvr_user_settings.json");
-
-		Json::Reader reader;
-		Json::Value value;
-		if (!reader.parse(file_id, value)){
-			std::cout << "Couldn't open save file, creating file.";
-			// new file just has default values
-			//m_osvrUser.saveConfigFile(filename);
-		}
-		else{
-			m_osvrUser.read(value);
-		}
+		readConfigFile();
 
 		/// Create the initialization options
         OSVR_DeviceInitOptions opts = osvrDeviceCreateInitOptions(ctx);
@@ -74,9 +132,26 @@ class AnalogSyncDevice {
 
         /// Register update callback
         m_dev.registerUpdateCallback(this);
-    }
+	};
 
-    OSVR_ReturnCode update() {
+	void readConfigFile(){
+		std::ifstream file_id;
+		file_id.open(Constants::config_path + Constants::config_file);
+
+		Json::Reader reader;
+		Json::Value value;
+		if (!reader.parse(file_id, value)){
+			std::cout << "USER_SETTINGS_PLUGIN: Couldn't open save file, creating file.";
+			// new file just has default values
+			//m_osvrUser.saveConfigFile(filename);
+		}
+		else{
+			m_osvrUser.read(value);
+		}
+		file_id.close();
+	};
+
+	OSVR_ReturnCode update() {
 
 		OSVR_AnalogState values[4];
 
@@ -87,13 +162,13 @@ class AnalogSyncDevice {
 		osvrDeviceAnalogSetValues(m_dev, m_analog, values, 4);
 
 		return OSVR_RETURN_SUCCESS;
-    }
+		};
 
   private:
-    osvr::pluginkit::DeviceToken m_dev;
+	OSVRUser m_osvrUser;
+	osvr::pluginkit::DeviceToken m_dev;
     OSVR_AnalogDeviceInterface m_analog;
 	double m_myVal;
-	OSVRUser m_osvrUser;
 	bool m_initialized = false;
 };
 
@@ -127,5 +202,8 @@ OSVR_PLUGIN(com_osvr_user_settings) {
     /// Register a detection callback function object.
     context.registerHardwareDetectCallback(new HardwareDetection());
 
-    return OSVR_RETURN_SUCCESS;
+	/// Set up a file change notify to trigger re-reading of file
+	Watcher::run();
+
+	return OSVR_RETURN_SUCCESS;
 }
