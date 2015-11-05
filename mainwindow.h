@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSerialPort>
+
 #include "osvruser.h"
 
 namespace Ui {
@@ -33,8 +35,22 @@ private slots:
     void on_resetYawButton_clicked();
 
     void on_disableButton_clicked();
-
     void on_enableButton_clicked();
+
+    void on_updateFWButton_clicked();
+    void on_checkFWButton_clicked();
+
+    QString findSerialPort(int,int);
+    QSerialPort *openSerialPort(QString);
+    void writeSerialData(QSerialPort *thePort, const QByteArray &);
+
+    void sendCommandNoResult(QByteArray);
+    QString sendCommandWaitForResults(QByteArray);
+
+    void atmel_erase();
+    void atmel_load(QString);
+    void atmel_launch();
+
 
 private:
     Ui::MainWindow *ui;

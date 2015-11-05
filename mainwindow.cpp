@@ -31,12 +31,15 @@
 #include <fstream>
 
 #include <QFile>
+#include <QFileDialog>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QList>
 #include <QMessageBox>
 #include <QProcess>
 #include <QDir>
+#include <QtSerialPort>
 
 #include "json/json.h"
 
@@ -277,3 +280,193 @@ void MainWindow::on_enableButton_clicked()
     QString file = "enableOSVRDirect.bat";
     process->start(file);
 }
+
+// FW Update button
+void MainWindow::on_updateFWButton_clicked()
+{
+    QMessageBox msgBox;
+    QMessageBox::StandardButton reply;
+    QString portName;
+    QString hexFile;
+    QString fileFilter = "*.hex";
+
+    // find the OSVR HDK and get current FW version
+    QString fwVersion = sendCommandWaitForResults("#?v\n");
+    if (fwVersion !=  ""){
+        reply = QMessageBox::question(this,tr("FW version"),
+                "Current FW Version: " + fwVersion + "\nDo you wish to proceed?",
+                QMessageBox::Yes|QMessageBox::No);
+        if (reply==QMessageBox::No)
+            return;
+    }else
+        return;
+
+    // ask User for the HEX file to update with
+    hexFile = QFileDialog::getOpenFileName(this,QString("Open FW Update File"),fileFilter,0);
+    if (hexFile == ""){
+         return; // user pressed cancel
+    }
+    msgBox.setText("FW hex file: "+ hexFile);
+    msgBox.exec();
+
+    sendCommandNoResult("#?b1948\n");
+
+    msgBox.setText("This application uses the opensource dfu-programmer which can be found here: dfu-programmer.github.io \n\nAt this time your device should now be in ATMEL bootloader mode. If you haven't loaded the ATMEL drivers yet, you should do so now. You can find the drivers in this distribution in the dfu-prog-usb-1.2.2 folder. \n\nRight click on the device in the device manager and Update the Driver Softare...");
+    msgBox.exec();
+
+    atmel_erase();
+    atmel_load(hexFile);
+    atmel_launch();
+
+    // Verify FW version
+    fwVersion = sendCommandWaitForResults("#?v\n");
+    if (fwVersion ==  ""){
+        fwVersion = "Error: Cannot read FW version.";
+    }
+    msgBox.setText("FW Version: " + fwVersion);
+    msgBox.exec();
+}
+
+void MainWindow::on_checkFWButton_clicked()
+{
+    QMessageBox msgBox;
+
+    // get FW version
+    QString fwVersion = sendCommandWaitForResults("#?v\n");
+    if (fwVersion ==  ""){
+        fwVersion = "Error: Cannot read FW version.";
+    }
+    msgBox.setText("FW Version: " + fwVersion);
+    msgBox.exec();
+    return;
+}
+
+void MainWindow::atmel_erase()
+{
+    QProcess *process = new QProcess(this);
+    QString file = "dfu-programmer.exe atxmega256a3bu erase";
+    process->start(file);
+    QThread::sleep(3);
+}
+
+void MainWindow::atmel_load(QString fwFile)
+{
+    QProcess *process = new QProcess(this);
+    QString file = "dfu-programmer.exe atxmega256a3bu flash \"" + fwFile + "\"";
+    process->start(file);
+    QThread::sleep(3);
+}
+
+void MainWindow::atmel_launch()
+{
+    QProcess *process = new QProcess(this);
+    QString file = "dfu-programmer.exe atxmega256a3bu launch";
+    process->start(file);
+    QThread::sleep(5);
+}
+
+
+QString MainWindow::findSerialPort(int VID, int PID)
+{
+    QString outputString = "";
+
+    const QString blankString = QObject::tr("N/A");
+    QString description;
+    QString manufacturer;
+    QString serialNumber;
+    QString portName;
+    bool deviceFound = false;
+
+   portName = "Not found";
+    foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
+        if (info.vendorIdentifier()==VID && info.productIdentifier()==PID){
+            description = info.description();
+            manufacturer = info.manufacturer();
+            serialNumber = info.serialNumber();
+            outputString += "\n";
+            outputString += QObject::tr("Port: ") + info.portName() + "\n"
+                    + QObject::tr("Location: ") + info.systemLocation() + "\n"
+                    + QObject::tr("Description: ") + info.description() + "\n"
+                    + QObject::tr("Manufacturer: ") + info.manufacturer() + "\n"
+                    + QObject::tr("Serial number: ") + info.serialNumber() + "\n"
+                    + QObject::tr("Vendor Identifier: ") + (info.hasVendorIdentifier() ? QString::number(info.vendorIdentifier(), 16) : QString()) + "\n"
+                    + QObject::tr("Product Identifier: ") + (info.hasProductIdentifier() ? QString::number(info.productIdentifier(), 16) : QString()) + "\n"
+                    + QObject::tr("Busy: ") + (info.isBusy() ? QObject::tr("Yes") : QObject::tr("No")) + "\n";
+            deviceFound = true;
+            portName = info.portName();
+         }
+    }
+    QMessageBox msgBox;
+    if (deviceFound){
+        msgBox.setText("COM port: "+ outputString);
+    }else{
+        msgBox.setText("Could not find device");
+    }
+    msgBox.exec();
+    return portName;
+}
+
+QSerialPort *MainWindow::openSerialPort(QString portName)
+{
+    QSerialPort *thePort = new QSerialPort(this);
+
+    thePort->setPortName(portName);
+    thePort->setBaudRate(QSerialPort::Baud57600);
+    thePort->setDataBits(QSerialPort::Data8);
+    thePort->setParity(QSerialPort::NoParity);
+    thePort->setStopBits(QSerialPort::OneStop);
+    thePort->setFlowControl(QSerialPort::NoFlowControl);
+    if (thePort->open(QIODevice::ReadWrite)) {
+        return thePort;
+    } else {
+        QMessageBox::critical(this,tr("Open port fail"),"Cannot open serial port " + portName + ".\n Please check your connections and try again.\n");
+        return NULL;
+    }
+}
+
+void MainWindow::writeSerialData(QSerialPort *thePort, const QByteArray &data)
+{
+    if (thePort->write(data)== -1){
+        QMessageBox::critical(this,tr("Write serial port failure"),"Cannot write to serial port.\n Please check your connections and try again.\n");
+    }
+    thePort->flush();
+    thePort->waitForBytesWritten(5000);
+    QThread::sleep(1);
+}
+
+QString MainWindow::sendCommandWaitForResults(QByteArray theCommand){
+    QByteArray theResult="";
+    QSerialPort *thePort;
+    QString portName;
+
+    // find the OSVR HDK and get current FW version
+    portName = findSerialPort(0x1532, 0x0B00);
+    if (portName != "Not found"){
+        thePort = openSerialPort(portName);
+        if (thePort){
+            writeSerialData(thePort,theCommand);
+            if (thePort->waitForReadyRead(5000)){
+                theResult = thePort->readAll();
+            }
+            thePort->close();
+        }
+    }else
+        QMessageBox::critical(this,tr("Alert"),"Could not retrieve results from " + theCommand + ". Check your connections and try again.");
+    return theResult;
+}
+
+void MainWindow::sendCommandNoResult(QByteArray theCommand){
+    QSerialPort *thePort;
+    QString portName;
+
+    // find the OSVR HDK and get current FW version
+    portName = findSerialPort(0x1532, 0x0B00);
+    if (portName != "Not found"){
+        thePort = openSerialPort(portName);
+        if (thePort){
+            writeSerialData(thePort,theCommand);
+        }
+        thePort->close();
+    }
+}
+
