@@ -6,41 +6,69 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>409</width>
-    <height>517</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>409</width>
-    <height>517</height>
+    <width>1280</width>
+    <height>720</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>409</width>
-    <height>517</height>
+    <width>1280</width>
+    <height>720</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>OSVR Utilities</string>
+   <string>OSVR Profiler</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">font: 8pt &quot;Arial&quot;;
-MainWindow {font::8px}</string>
+   <string notr="true">background-image:url(images/bgwindow.png);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>331</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>OSVR Profiler</string>
+    </property>
+   </widget>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>381</width>
-      <height>391</height>
+      <width>397</width>
+      <height>630</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-right-color: rgb(255, 255, 255);
+gridline-color: rgb(0, 0, 0);
+border-top-color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);</string>
+    </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -49,26 +77,23 @@ MainWindow {font::8px}</string>
      <widget class="QWidget" name="gridLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>0</y>
-        <width>274</width>
-        <height>126</height>
+        <x>10</x>
+        <y>100</y>
+        <width>381</width>
+        <height>141</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="label_13">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Seated Eye Height (cm)</string>
+          <string>Seated Eye Height (cm) </string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -76,53 +101,63 @@ MainWindow {font::8px}</string>
         </widget>
        </item>
        <item row="3" column="1">
+        <widget class="QLineEdit" name="seatedHeight"/>
+       </item>
+       <item row="4" column="1">
         <widget class="QLineEdit" name="ipd"/>
        </item>
-       <item row="3" column="0">
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="standingHeight"/>
+       </item>
+       <item row="4" column="0">
         <widget class="QLabel" name="label_2">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Inerpupillary distance (mm)</string>
+          <string>Inerpupillary distance (mm) </string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="seatedHeight"/>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="standingHeight"/>
-       </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="label">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Standing Eye Height (cm)</string>
+          <string>Standing Eye Height (cm) </string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Gender  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
         <widget class="QComboBox" name="gender">
          <item>
           <property name="text">
@@ -136,22 +171,22 @@ MainWindow {font::8px}</string>
          </item>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_3">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_23">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Gender</string>
+          <string>Physical Details  </string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -161,154 +196,406 @@ MainWindow {font::8px}</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>140</y>
-        <width>356</width>
-        <height>86</height>
+        <y>250</y>
+        <width>381</width>
+        <height>261</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="4">
-        <widget class="QLineEdit" name="dOsSpherical"/>
-       </item>
-       <item row="0" column="5">
-        <widget class="QLabel" name="label_5">
+      <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0,0" columnminimumwidth="0,0,0,0,0">
+       <item row="8" column="2">
+        <widget class="QLabel" name="label_18">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Cylindrical</string>
+          <string>  Left  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="2" column="6">
-        <widget class="QLineEdit" name="dOdAxis"/>
-       </item>
-       <item row="1" column="5">
-        <widget class="QLineEdit" name="dOsCylindrical"/>
-       </item>
-       <item row="2" column="4">
-        <widget class="QLineEdit" name="dOdSpherical"/>
-       </item>
-       <item row="1" column="6">
-        <widget class="QLineEdit" name="dOsAxis"/>
-       </item>
-       <item row="2" column="5">
-        <widget class="QLineEdit" name="dOdCylindrical"/>
-       </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="label_4">
+       <item row="5" column="2">
+        <widget class="QLabel" name="label_17">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Spherical</string>
+          <string>  Left  </string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
        <item row="2" column="2">
-        <widget class="QLabel" name="label_10">
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>R</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
         <widget class="QLabel" name="label_9">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>L</string>
+          <string>  Left  </string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="0" column="6">
-        <widget class="QLabel" name="label_6">
+       <item row="3" column="1">
+        <widget class="QRadioButton" name="ODdominant">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
-         <property name="text">
-          <string>Axis</string>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
          </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="text">
+          <string>  Right  </string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="2" column="1">
+        <widget class="QRadioButton" name="OSdominant">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>  Left  </string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_10">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>  Right  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
         <widget class="QLabel" name="label_15">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>Dominant</string>
+          <string>  Dominant Eye  </string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="label_7">
+       <item row="6" column="2">
+        <widget class="QLabel" name="label_19">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string> Distance Vision Prescription</string>
+          <string>  Right  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3" colspan="2">
+        <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>  Spherical Power  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QLabel" name="label_20">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>  Right  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="4">
+        <widget class="QLabel" name="label_22">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Distance Vision Correction  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3" colspan="2">
+        <widget class="QLabel" name="label_5">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>  Cylindrical Astigmatism  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3" colspan="2">
+        <widget class="QLabel" name="label_6">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Axial Astigmatism  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3" colspan="2">
+        <widget class="QLineEdit" name="dOsCylindrical"/>
+       </item>
+       <item row="6" column="3" colspan="2">
+        <widget class="QLineEdit" name="dOdCylindrical"/>
+       </item>
+       <item row="3" column="3" colspan="2">
+        <widget class="QLineEdit" name="dOdSpherical"/>
+       </item>
+       <item row="2" column="3" colspan="2">
+        <widget class="QLineEdit" name="dOsSpherical"/>
+       </item>
+       <item row="8" column="3" colspan="2">
+        <widget class="QLineEdit" name="dOsAxis"/>
+       </item>
+       <item row="9" column="3" colspan="2">
+        <widget class="QLineEdit" name="dOdAxis"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>520</y>
+        <width>231</width>
+        <height>76</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="nOsAdd"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="nOdAdd"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_12">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>  Left  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_11">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>  Right  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLabel" name="label_16">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string> Near Vision Correction  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>381</width>
+        <height>82</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6" rowstretch="0,0,0" columnstretch="65,53">
+       <item row="2" column="1">
+        <widget class="QPushButton" name="ProfileCreate">
+         <property name="text">
+          <string>New Profile</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="ProfileList">
+         <property name="currentText">
+          <string notr="true">Default</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Default</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_21">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Profile  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Devices</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>381</width>
+        <height>158</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7" rowstretch="0,0,0,0,0" columnstretch="65,0,0">
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_29">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Positional Tracker</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_24">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Headset Tracker</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -319,94 +606,231 @@ MainWindow {font::8px}</string>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QRadioButton" name="OSdominant">
-         <property name="layoutDirection">
-          <enum>Qt::RightToLeft</enum>
+        <widget class="QComboBox" name="TrackList">
+         <property name="contextMenuPolicy">
+          <enum>Qt::DefaultContextMenu</enum>
+         </property>
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus DK1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus DK2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>OSVR HDK 1.1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS ZC60</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sensics dSight</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sensix xSight</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sensix zSight</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Vrvana Totem</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Vuzix720</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Vuzix1200</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="DisplaySettings">
+         <property name="text">
+          <string>Settings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_25">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
          </property>
          <property name="text">
-          <string/>
+          <string>Headset Display</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="TrackCalibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QPushButton" name="PosTrackCalibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QPushButton" name="HmdTest">
+         <property name="text">
+          <string>Test</string>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QRadioButton" name="ODdominant">
-         <property name="layoutDirection">
-          <enum>Qt::RightToLeft</enum>
+        <widget class="QComboBox" name="DisplayList">
+         <property name="contextMenuPolicy">
+          <enum>Qt::DefaultContextMenu</enum>
          </property>
-         <property name="text">
-          <string/>
+         <property name="editable">
+          <bool>false</bool>
          </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus DK1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus DK2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>OSVR HDK 1.1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS ZC60</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sensics dSight</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sensix xSight</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sensix zSight</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Vrvana Totem</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Vuzix720</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Vuzix1200</string>
+          </property>
+         </item>
         </widget>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="gridLayoutWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>240</y>
-        <width>102</width>
-        <height>80</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="2">
-        <widget class="QLabel" name="label_11">
+       <item row="3" column="1">
+        <widget class="QComboBox" name="PosTrackList">
+         <property name="contextMenuPolicy">
+          <enum>Qt::DefaultContextMenu</enum>
+         </property>
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus DK2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>OSVR HDK 1.1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS ZC60</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="3">
+        <widget class="QLabel" name="label_33">
          <property name="font">
           <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>R</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="label_12">
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>L</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLineEdit" name="nOdAdd"/>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLineEdit" name="nOsAdd"/>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="label_8">
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Add Near</string>
+          <string>Head Mounted Display  </string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -418,27 +842,1118 @@ MainWindow {font::8px}</string>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="gridLayoutWidget_4">
+     <widget class="QWidget" name="gridLayoutWidget_8">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>330</y>
-        <width>320</width>
-        <height>31</height>
+        <x>10</x>
+        <y>180</y>
+        <width>382</width>
+        <height>88</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="1">
-        <widget class="QPushButton" name="saveButton">
+      <layout class="QGridLayout" name="gridLayout_8" rowstretch="0,0,0" columnstretch="65,30,42,0">
+       <item row="0" column="0" colspan="4">
+        <widget class="QLabel" name="label_34">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string>Save</string>
+          <string>Eye Tracking  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="resetButton">
+       <item row="1" column="1">
+        <widget class="QComboBox" name="EyeTrackLeftList">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS ZC60</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SMI Eye Tracker</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_26">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string>Reset</string>
+          <string>Left</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="EyeTrackLeftCalibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="EyeTrackRightList">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS ZC60</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SMI Eye Tracker</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_35">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Right</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="EyeTrackRightCalibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="EyeTrackRightTest">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="EyeTrackLeftTest">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>270</y>
+        <width>387</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_9" rowstretch="0,0,0,0,0,0,0" columnstretch="65,0,0,0">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_43">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Controller1Calibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QPushButton" name="Controller3Test">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="Controller2Calibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="Controller2Test">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QPushButton" name="Controller4Test">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="Controller1Test">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QPushButton" name="Controller5Test">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_41">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>4</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QPushButton" name="Controller3Calibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_40">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>3</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QPushButton" name="Controller5Calibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_39">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_42">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>5</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="Controller1List">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Afterglow Ax 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DTrack Flystick</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Futaba Interlink Elite</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Griffin PowerMate</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Logitech Extreme 3D Pro</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus Touch</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Recoil</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Saitek ST290</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Steam Controller</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox 360</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox S</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QPushButton" name="Controller4Calibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="4">
+        <widget class="QLabel" name="label_36">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Controllers  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_44">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>6</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QPushButton" name="Controller6Calibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QPushButton" name="Controller6Test">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="Controller1List_2">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Afterglow Ax 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DTrack Flystick</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Futaba Interlink Elite</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Griffin PowerMate</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Logitech Extreme 3D Pro</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus Touch</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Recoil</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Saitek ST290</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Steam Controller</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox 360</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox S</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QComboBox" name="Controller1List_3">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Afterglow Ax 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DTrack Flystick</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Futaba Interlink Elite</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Griffin PowerMate</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Logitech Extreme 3D Pro</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus Touch</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Recoil</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Saitek ST290</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Steam Controller</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox 360</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox S</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QComboBox" name="Controller1List_4">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Afterglow Ax 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DTrack Flystick</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Futaba Interlink Elite</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Griffin PowerMate</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Logitech Extreme 3D Pro</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus Touch</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Recoil</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Saitek ST290</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Steam Controller</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox 360</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox S</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QComboBox" name="Controller1List_5">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Afterglow Ax 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DTrack Flystick</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Futaba Interlink Elite</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Griffin PowerMate</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Logitech Extreme 3D Pro</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus Touch</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Recoil</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Saitek ST290</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Steam Controller</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox 360</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox S</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QComboBox" name="Controller1List_6">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Afterglow Ax 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DTrack Flystick</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Futaba Interlink Elite</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Griffin PowerMate</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Logitech Extreme 3D Pro</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oculus Touch</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Skeleton Glove Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS Recoil</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Left</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RS CC Right</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Saitek ST290</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SideWinder2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Steam Controller</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox 360</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xbox S</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>510</y>
+        <width>381</width>
+        <height>88</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_10" rowstretch="0,0,0" columnstretch="0,0,0,0">
+       <item row="1" column="1">
+        <widget class="QComboBox" name="Locomotion1List">
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Virtuix Omni</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>VRGo</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_28">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_27">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Locomotion1Calibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="Locomption1Test">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="Locomotion2List">
+         <property name="currentText">
+          <string notr="true">None</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Virtuix Omni</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>VRGo</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="Locomotion2Calibrate">
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="Locomotion2Test">
+         <property name="text">
+          <string>Test</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="4">
+        <widget class="QLabel" name="label_38">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Locomotion  </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -447,27 +1962,27 @@ MainWindow {font::8px}</string>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>SW Utilities</string>
+      <string>Utilities</string>
      </attribute>
      <widget class="QPushButton" name="resetYawButton">
       <property name="geometry">
        <rect>
-        <x>14</x>
-        <y>40</y>
-        <width>111</width>
+        <x>120</x>
+        <y>10</y>
+        <width>151</width>
         <height>23</height>
        </rect>
       </property>
       <property name="text">
-       <string>Recenter</string>
+       <string>Reset Yaw</string>
       </property>
      </widget>
      <widget class="QPushButton" name="enableButton">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>150</y>
-        <width>111</width>
+        <x>120</x>
+        <y>130</y>
+        <width>151</width>
         <height>21</height>
        </rect>
       </property>
@@ -478,17 +1993,17 @@ MainWindow {font::8px}</string>
      <widget class="QLabel" name="label_30">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>0</x>
         <y>40</y>
-        <width>221</width>
-        <height>131</height>
+        <width>391</width>
+        <height>81</height>
        </rect>
       </property>
       <property name="text">
        <string>This function will help you set your HMD such that it will point in a direction that faces forward. You will need to place the headset in the orientation that you would like to set as forward facing then proceed with the instructions according to the calibration app.</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -497,17 +2012,17 @@ MainWindow {font::8px}</string>
      <widget class="QLabel" name="label_31">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>150</y>
-        <width>221</width>
-        <height>51</height>
+        <x>0</x>
+        <y>160</y>
+        <width>391</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
        <string>Enable OSVR direct to display mode. This will allow the system to only display VR relevant apps on the HMD.</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -516,9 +2031,9 @@ MainWindow {font::8px}</string>
      <widget class="QPushButton" name="disableButton">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>120</x>
         <y>200</y>
-        <width>111</width>
+        <width>151</width>
         <height>21</height>
        </rect>
       </property>
@@ -529,14 +2044,59 @@ MainWindow {font::8px}</string>
      <widget class="QLabel" name="label_32">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>200</y>
-        <width>221</width>
+        <x>0</x>
+        <y>230</y>
+        <width>401</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string>Disables OSVR direct to display mode (see above).</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="checkFWButton">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>360</y>
+        <width>111</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Check FW Version</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="updateFWButton">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>270</y>
+        <width>111</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Update FW</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_37">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>300</y>
+        <width>391</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>This utility will check the current FW version of your OSVR HDK. If this app cannot read the FW version, try disconnecting the power and usb connectors from the belt box and try again.</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -545,17 +2105,12 @@ MainWindow {font::8px}</string>
        <bool>true</bool>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>OSVR HDK Utilities</string>
-     </attribute>
-     <widget class="QLabel" name="label_33">
+     <widget class="QLabel" name="label_48">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>90</y>
-        <width>221</width>
+        <x>0</x>
+        <y>390</y>
+        <width>391</width>
         <height>81</height>
        </rect>
       </property>
@@ -569,74 +2124,590 @@ MainWindow {font::8px}</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="updateFWButton">
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>Server</string>
+     </attribute>
+     <widget class="QPushButton" name="saveButton_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>90</y>
-        <width>111</width>
-        <height>23</height>
+        <x>0</x>
+        <y>40</y>
+        <width>93</width>
+        <height>28</height>
        </rect>
       </property>
       <property name="text">
-       <string>Update FW</string>
+       <string>Restart</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="checkFWButton">
+     <widget class="QPushButton" name="saveButton_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>111</width>
-        <height>23</height>
+        <x>100</x>
+        <y>40</y>
+        <width>93</width>
+        <height>28</height>
        </rect>
       </property>
       <property name="text">
-       <string>Check FW Version</string>
+       <string>Pause</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_34">
+     <widget class="QPushButton" name="saveButton_4">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>20</y>
-        <width>221</width>
-        <height>81</height>
+        <x>200</x>
+        <y>40</y>
+        <width>93</width>
+        <height>28</height>
        </rect>
       </property>
       <property name="text">
-       <string>This utility will check the current FW version of your OSVR HDK. If this app cannot read the FW version, try disconnecting the power and usb connectors from the belt box and try again.</string>
+       <string>Stop</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="saveButton_5">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>40</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="standingHeight_2">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>10</y>
+        <width>189</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_46">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Server Status:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
       </property>
      </widget>
+     <widget class="QLabel" name="label_47">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
+        <width>391</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Server Plugins: Uncheck checkbox to disable</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>100</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_18">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>100</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>130</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_3">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>160</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_4">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>190</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_5">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>220</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_6">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>250</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_7">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>280</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_8">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>310</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_9">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>340</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_10">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>370</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_11">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>400</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_12">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>430</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_13">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>460</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_14">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>490</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_15">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>520</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_16">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>550</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_17">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>580</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_19">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>130</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_20">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>160</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_21">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>190</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_22">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>220</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_23">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>250</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_24">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>280</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_25">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>310</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_26">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>340</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_27">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>370</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_28">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>400</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_29">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>430</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_30">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>460</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_31">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>490</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_32">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>520</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_33">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>550</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_34">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>580</y>
+        <width>16</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="gridLayoutWidget_5">
+   <widget class="QWidget" name="gridLayoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>16</x>
-      <y>430</y>
-      <width>371</width>
+      <x>10</x>
+      <y>660</y>
+      <width>395</width>
       <height>31</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_5">
-     <item row="0" column="2">
-      <widget class="QPushButton" name="exitButton">
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="2" column="1">
+      <widget class="QPushButton" name="resetButton">
        <property name="text">
-        <string>Exit</string>
+        <string>Reset</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="2" column="3">
+      <widget class="QPushButton" name="saveButton">
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
       <widget class="QPushButton" name="aboutButton">
        <property name="text">
         <string>About</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="4">
+      <widget class="QPushButton" name="exitButton">
+       <property name="text">
+        <string>Exit</string>
        </property>
       </widget>
      </item>
@@ -648,8 +2719,8 @@ MainWindow {font::8px}</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>409</width>
-     <height>20</height>
+     <width>1280</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -664,14 +2735,9 @@ MainWindow {font::8px}</string>
   <tabstop>OSdominant</tabstop>
   <tabstop>ODdominant</tabstop>
   <tabstop>dOsSpherical</tabstop>
-  <tabstop>dOsCylindrical</tabstop>
-  <tabstop>dOsAxis</tabstop>
   <tabstop>dOdSpherical</tabstop>
-  <tabstop>dOdCylindrical</tabstop>
-  <tabstop>dOdAxis</tabstop>
   <tabstop>nOsAdd</tabstop>
   <tabstop>nOdAdd</tabstop>
-  <tabstop>resetButton</tabstop>
   <tabstop>saveButton</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>resetYawButton</tabstop>
