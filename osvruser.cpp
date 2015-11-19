@@ -126,6 +126,7 @@ double OSVRUser::pupilDistance(eyeSide eyeBall) const{
             return mLeft.pupilDistance;
             break;
         case OD:
+		default:
             return mRight.pupilDistance;
     }
 }
@@ -147,7 +148,8 @@ double OSVRUser::spherical(eyeSide eyeBall) const{
             return mLeft.correction.spherical;
             break;
         case OD:
-            return mRight.correction.spherical;
+		default:
+			return mRight.correction.spherical;
     }
 }
 
@@ -168,7 +170,8 @@ double OSVRUser::cylindrical(eyeSide eyeBall) const{
             return mLeft.correction.cylindrical;
             break;
         case OD:
-            return mRight.correction.cylindrical;
+		default:
+			return mRight.correction.cylindrical;
     }
 }
 
@@ -189,7 +192,8 @@ double OSVRUser::axis(eyeSide eyeBall) const{
             return mLeft.correction.axis;
             break;
         case OD:
-            return mRight.correction.axis;
+		default:
+			return mRight.correction.axis;
     }
 }
 
@@ -210,7 +214,8 @@ double OSVRUser::addNear(eyeSide eyeBall) const{
             return mLeft.addNear;
             break;
         case OD:
-            return mRight.addNear;
+		default:
+			return mRight.addNear;
     }
 }
 

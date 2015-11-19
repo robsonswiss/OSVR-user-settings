@@ -39,6 +39,12 @@ Occasionally you may experience issues where the HDK is not properly detected us
 <li>re-attach the usb cable to the belt pack</li>
 </ol>
 
+##To build the projects
+- osvr_config:
+Requires the QT environment. Once installed, open the OSVR_config.pro file and the system will build the rest of the application. I used the MINGW compiler.
+- com_osvr_user_settings: to build this plugin, follow the same method as building an out of tree osvr plugin as documented on the osvr developer site. You must run CMAKE on the CMakeList.Txt file and this should produce a corresponding VS2012 solution file.
+- usersettingsclient.exe: to build this stand alone application, you must first run CMAKE on the CMakeList.Txt file and this should produce a corresponding VS2012 solution file. The application is an OSVR client and will monitor the user settings for IPD, standing height, and seated height. To extend the parameters being pushed through the system, you will have to modify both the plugin and this client application.
+
 ##Things on the todo list:
 - remove jsoncpp
 - continuous integration
@@ -51,7 +57,8 @@ Occasionally you may experience issues where the HDK is not properly detected us
 ###com osvr user settings.dll
 - this is a server side plugin that is able to read the settings in the user settings file
 - this file must be installed in the osvr-plugins-0 directory of the server binary executable
-- the file is read at server startup: you must stop and start the server to pick up any new values
+- the plug in currently assumes the settings file is in the $APPDIR/OSVR directory
+
 ###osvr server config.json
 - this is the server config file
 - for convenience, a properly edited version is distributed with the plugin

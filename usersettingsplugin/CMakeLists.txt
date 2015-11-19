@@ -23,12 +23,24 @@ include_directories("${CMAKE_CURRENT_BINARY_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/.
 # sets up include dirs, libraries, and naming convention (no leading "lib")
 # for an OSVR plugin. It also installs the plugin into the right directory.
 # Pass as many source files as you need. See osvrAddPlugin.cmake for full docs.
-osvr_add_plugin(NAME com_osvr_user_settings
+
+# setup unicode for string handling in the plugin
+	add_definitions(-DUNICODE)
+	add_definitions(-D_UNICODE)
+
+	osvr_add_plugin(NAME com_osvr_user_settings
     CPP # indicates we'd like to use the C++ wrapper
     SOURCES
     com_osvr_user_settings.cpp
 	../OSVRUser.cpp
+	FileWatcher.cpp
+	FileWatcherImpl.cpp
+	stdafx.cpp
 	../OSVRUser.h
+	stdafx.h
+	targetver.h
+	FileWatcher.h
+    FileWatcherImpl.h	
     "${CMAKE_CURRENT_BINARY_DIR}/com_osvr_user_settings_json.h")
 
 # If you use other libraries, find them and add a line like:

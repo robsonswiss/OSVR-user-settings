@@ -29,9 +29,6 @@ private slots:
     void on_saveButton_clicked();
     void on_exitButton_clicked();
     void on_aboutButton_clicked();
-    void on_ODdominantButton_clicked();
-    void on_OSdominantButton_clicked();
-    void on_demoButton_clicked();
     void on_resetYawButton_clicked();
 
     void on_disableButton_clicked();
@@ -55,8 +52,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QString osvrUserConfigFilename;
-    OSVRUser osvrUser;
+    bool m_verbose = false;
+    QString m_osvrUserConfigFilename;
+    OSVRUser m_osvrUser;
 };
 
 #endif // MAINWINDOW_H

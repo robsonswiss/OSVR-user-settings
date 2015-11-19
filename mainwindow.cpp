@@ -82,10 +82,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-// Connect button signal to appropriate slot
-//     connect(ui->ODdominant, SIGNAL (released()), this, SLOT (on_ODdominantButton_clicked();));
-//     connect(ui->OSdominant, SIGNAL (released()), this, SLOT (on_OSdominantButton_clicked();));
-//    connect(ui->resetButton, SIGNAL (released()), this, SLOT (on_resetButton_clicked();));
     ui->setupUi(this);
 
     ui->standingHeight->setValidator( new myValidator(0, 300, 2, this) );
@@ -104,8 +100,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->tabWidget->setCurrentIndex(0);
 
-    osvrUserConfigFilename = QString("C:/ProgramData/OSVR/osvr_user_settings.json");
-    loadConfigFile(osvrUserConfigFilename);
+    m_osvrUserConfigFilename = QString("C:/ProgramData/OSVR/osvr_user_settings.json");
+    loadConfigFile(m_osvrUserConfigFilename);
 }
 
 MainWindow::~MainWindow()
@@ -130,44 +126,33 @@ bool MainWindow::loadConfigFile(QString filename)
         // new file just has default values
         saveConfigFile(filename);
     }else{
-        osvrUser.read(value);
+        m_osvrUser.read(value);
     }
     updateFormValues();
     return true;
 }
 
 void MainWindow::updateFormValues(){
-    if ("Male" == osvrUser.gender())
+    if ("Male" == m_osvrUser.gender())
         ui->gender->setCurrentIndex(0);
     else
         ui->gender->setCurrentIndex(1);
-    ui->standingHeight->setText(QString::number(osvrUser.standingEyeHeight()));
-    ui->seatedHeight->setText(QString::number(osvrUser.seatedEyeHeight()));
-    ui->ipd->setText(QString::number(osvrUser.pupilDistance(OS)+osvrUser.pupilDistance(OD)));
+    ui->standingHeight->setText(QString::number(m_osvrUser.standingEyeHeight()));
+    ui->seatedHeight->setText(QString::number(m_osvrUser.seatedEyeHeight()));
+    ui->ipd->setText(QString::number(m_osvrUser.pupilDistance(OS)+m_osvrUser.pupilDistance(OD)));
 
-    ui->dOsSpherical->setText(QString::number(osvrUser.spherical(OS)));
-    ui->dOsCylindrical->setText(QString::number(osvrUser.cylindrical(OS)));
-    ui->dOsAxis->setText(QString::number(osvrUser.axis(OS)));
-    ui->nOsAdd->setText(QString::number(osvrUser.addNear(OS)));
-    ui->OSdominant->setChecked(osvrUser.dominant(OS));
+    ui->dOsSpherical->setText(QString::number(m_osvrUser.spherical(OS)));
+    ui->dOsCylindrical->setText(QString::number(m_osvrUser.cylindrical(OS)));
+    ui->dOsAxis->setText(QString::number(m_osvrUser.axis(OS)));
+    ui->nOsAdd->setText(QString::number(m_osvrUser.addNear(OS)));
+    ui->OSdominant->setChecked(m_osvrUser.dominant(OS));
 
-    ui->dOdSpherical->setText(QString::number(osvrUser.spherical(OD)));
-    ui->dOdCylindrical->setText(QString::number(osvrUser.cylindrical(OD)));
-    ui->dOdAxis->setText(QString::number(osvrUser.axis(OD)));
-    ui->nOdAdd->setText(QString::number(osvrUser.addNear(OD)));
-    ui->ODdominant->setChecked(osvrUser.dominant(OD));
+    ui->dOdSpherical->setText(QString::number(m_osvrUser.spherical(OD)));
+    ui->dOdCylindrical->setText(QString::number(m_osvrUser.cylindrical(OD)));
+    ui->dOdAxis->setText(QString::number(m_osvrUser.axis(OD)));
+    ui->nOdAdd->setText(QString::number(m_osvrUser.addNear(OD)));
+    ui->ODdominant->setChecked(m_osvrUser.dominant(OD));
 }
-
-void MainWindow::on_ODdominantButton_clicked(){
-    ui->ODdominant->setChecked(true);
-    ui->OSdominant->setChecked(false);
-}
-
-void MainWindow::on_OSdominantButton_clicked(){
-    ui->OSdominant->setChecked(true);
-    ui->ODdominant->setChecked(false);
-}
-
 
 void MainWindow::on_resetButton_clicked()
 {
@@ -233,7 +218,7 @@ void MainWindow::saveConfigFile(QString filename)
     strcpy( cstr, fname.c_str() );
 
     Json::Value ooo;
-    osvrUser.write(ooo);
+    m_osvrUser.write(ooo);
 
     std::ofstream out_file;
     out_file.open(cstr);
@@ -244,20 +229,13 @@ void MainWindow::saveConfigFile(QString filename)
 
 void MainWindow::on_saveButton_clicked()
 {
-    loadValuesFromForm(&osvrUser);
-    saveConfigFile(osvrUserConfigFilename);
+    loadValuesFromForm(&m_osvrUser);
+    saveConfigFile(m_osvrUserConfigFilename);
 }
 
 void MainWindow::on_exitButton_clicked()
 {
     QApplication::quit();
-}
-
-void MainWindow::on_demoButton_clicked()
-{
-    QProcess *process = new QProcess(this);
-    QString file = "spherical.exe -adapter 1 -screen-quality good -single-instance";
-    process->start(file);
 }
 
 void MainWindow::on_resetYawButton_clicked()
@@ -402,7 +380,8 @@ QString MainWindow::findSerialPort(int VID, int PID)
     }else{
         msgBox.setText("Could not find device");
     }
-    msgBox.exec();
+    if (m_verbose)
+        msgBox.exec();
     return portName;
 }
 
@@ -419,7 +398,8 @@ QSerialPort *MainWindow::openSerialPort(QString portName)
     if (thePort->open(QIODevice::ReadWrite)) {
         return thePort;
     } else {
-        QMessageBox::critical(this,tr("Open port fail"),"Cannot open serial port " + portName + ".\n Please check your connections and try again.\n");
+        if (m_verbose)
+            QMessageBox::critical(this,tr("Open port fail"),"Cannot open serial port " + portName + ".\n Please check your connections and try again.\n");
         return NULL;
     }
 }
@@ -427,7 +407,8 @@ QSerialPort *MainWindow::openSerialPort(QString portName)
 void MainWindow::writeSerialData(QSerialPort *thePort, const QByteArray &data)
 {
     if (thePort->write(data)== -1){
-        QMessageBox::critical(this,tr("Write serial port failure"),"Cannot write to serial port.\n Please check your connections and try again.\n");
+        if (m_verbose)
+            QMessageBox::critical(this,tr("Write serial port failure"),"Cannot write to serial port.\n Please check your connections and try again.\n");
     }
     thePort->flush();
     thePort->waitForBytesWritten(5000);
@@ -450,8 +431,10 @@ QString MainWindow::sendCommandWaitForResults(QByteArray theCommand){
             }
             thePort->close();
         }
-    }else
-        QMessageBox::critical(this,tr("Alert"),"Could not retrieve results from " + theCommand + ". Check your connections and try again.");
+    }else{
+        if (m_verbose)
+           QMessageBox::critical(this,tr("Alert"),"Could not retrieve results from " + theCommand + ". Check your connections and try again.");
+    }
     return theResult;
 }
 
